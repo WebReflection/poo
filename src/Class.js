@@ -69,8 +69,9 @@ this.Class = function () {
                   break;
                 }
               default:
-                // scalar values, defaults
+                // scalar values or defaults
                 // plus the shared property
+                // fixed type
                 proto[key] = {
                   writable: true,
                   configurable: false,

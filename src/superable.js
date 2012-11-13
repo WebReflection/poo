@@ -1,11 +1,11 @@
 /*!(C) WebReflection */
 /**@license Mit Style */
-this.superable = function (Function, Object) {
+this.superable = function (Object) {
   // IE9+ and all other browsers older than IE8 should be fine
   var
     SUPER = "super",
     bind =
-      Function.bind ||
+      Object.bind ||
       function (self) {
         var cb = this;
         return function() {
@@ -37,9 +37,9 @@ this.superable = function (Function, Object) {
     hasOwnProperty = Object.hasOwnProperty,
     descriptor = {
       get: function get() {
-        "do not use strict";  // I am not kidding
-                              // if you want this
-                              // drop all "use strict";
+        "no strict";  // I am not kidding
+                      // if you want this without parsing
+                      // drop all "use strict";
         var
           caller = get.caller,
           proto = this,
@@ -66,4 +66,4 @@ this.superable = function (Function, Object) {
       object : defineProperty(object, SUPER, descriptor)
     ;
   };
-}(Function, Object);
+}(Object);
