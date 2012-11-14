@@ -1,5 +1,4 @@
-/*!(C) WebReflection */
-/**@license Mit Style */
+/*!(C) WebReflection *//** @license Mit Style */
 function SuperClass(descriptor) {
   return superable(
     Class(descriptor).prototype

@@ -1,5 +1,4 @@
-/*!(C) WebReflection */
-/**@license Mit Style */
+/*!(C) WebReflection *//** @license Mit Style */
 this.superable = function (Object) {
   // IE9+ and all other browsers older than IE8 should be fine
   var
@@ -18,21 +17,21 @@ this.superable = function (Object) {
         object.__defineGetter__(k, d.get);
         return object;
       },
+    getKeys =
+      Object.getOwnPropertyNames ||
+      Object.keys ||
+      function getKeys(object) {
+        var keys = [], key;
+        for (key in object)
+          hasOwnProperty.call(object, key) && keys.push(key);
+        ;
+        return keys;
+      },
     getPrototypeOf =
       Object.getPrototypeOf ||
       function getPrototypeOf(object) {
         return  object.__proto__ ||
                 object.constructor.prototype;
-      },
-    getKeys =
-      Object.getOwnPropertyNames ||
-      Object.keys ||
-      function getKeys(object) {
-        var keys = [], k;
-        for (k in object)
-          hasOwnProperty.call(object, k) &&
-          (keys.push(k))
-        ;
       },
     hasOwnProperty = Object.hasOwnProperty,
     descriptor = {

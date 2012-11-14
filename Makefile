@@ -1,4 +1,4 @@
-.PHONY: test
+.PHONY: build test require
 
 # list of files
 TESTS = test/Class.js       \
@@ -7,6 +7,10 @@ TESTS = test/Class.js       \
 # default build task
 build: $(TESTS)
 	make test
+
+# require_client needed
+require:
+	../require_client/require_client ./src ./build/poo.js --nostrict
 
 # clean/remove build folder
 test:

@@ -1,5 +1,4 @@
-/*!(C) WebReflection */
-/**@license Mit Style */
+/*!(C) WebReflection *//** @license Mit Style */
 this.Class = function () {
   // this should be compatible with every JS engine
   var
