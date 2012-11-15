@@ -27,17 +27,19 @@ wru.test([
     wru.assert("right constructor",
               (new Class).constructor === Constructor);
 
-    wru.assert("named fn expression too",
-      (new(cC({
-        constructor: function Other() {}
-      }))).constructor.name === "Other"
-    );
+    if ((function a(){}).name) {
+      wru.assert("named fn expression too",
+        (new(cC({
+          constructor: function Other() {}
+        }))).constructor.name === "Other"
+      );
 
-    wru.assert("anonymous fn expression too",
-      (new(cC({
-        constructor: function() {}
-      }))).constructor.name === ""
-    );
+      wru.assert("anonymous fn expression too",
+        (new(cC({
+          constructor: function() {}
+        }))).constructor.name === ""
+      );
+    }
   },
   {
     name: "extend",

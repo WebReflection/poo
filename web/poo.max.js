@@ -9,6 +9,14 @@ this.poo = function(Object){
     STATICS = "statics",
     SUPER = "super",
     VALUE = "value",
+    defineProperties =
+      Object.defineProperties ||
+      function (object, descriptor) {
+        for (var key in descriptor) {
+          has(descriptor, key) && defineProperty(object, key, descriptor[key]);
+        }
+        return object;
+      },
     bind =
       Object.bind ||
       function (self) {
@@ -24,14 +32,6 @@ this.poo = function(Object){
         has(descriptor, VALUE) && (object[key] = descriptor[VALUE]);
         has(descriptor, GET) && object.__defineGetter__(key, descriptor[GET]);
         has(descriptor, SET) && object.__defineSetter__(key, descriptor[SET]);
-        return object;
-      },
-    defineProperties =
-      Object.defineProperties ||
-      function (object, descriptor) {
-        for (var key in descriptor) {
-          has(descriptor, key) && defineProperty(object, key, descriptor[key]);
-        }
         return object;
       },
     descriptor = {
@@ -75,7 +75,7 @@ this.poo = function(Object){
         return  object.__proto__ ||
                 object[CONSTRUCTOR][PROTOTYPE];
       },
-    hasOwnProperty = Object[PROTOTYPE].hasOwnProperty,
+    has = bind.call(bind.call, Object[PROTOTYPE].hasOwnProperty),
     inherit =
       Object.create ||
       function inherit(object) {
@@ -98,11 +98,8 @@ this.poo = function(Object){
       value: value
     };
   }
-  function has(object, key) {
-    return hasOwnProperty.call(object, key);
-  }
   function superable(object) {
-    return hasOwnProperty.call(object, SUPER) ?
+    return has(object, SUPER) ?
       object : defineProperty(object, SUPER, descriptor)
     ;
   }

@@ -13,8 +13,8 @@ this.superable = function (Object) {
       },
     defineProperty =
       Object.defineProperty ||
-      function defineProperty(object, k, d) {
-        object.__defineGetter__(k, d.get);
+      function defineProperty(object, key, descriptor) {
+        object.__defineGetter__(key, descriptor.get);
         return object;
       },
     getKeys =
@@ -23,7 +23,7 @@ this.superable = function (Object) {
       function getKeys(object) {
         var keys = [], key;
         for (key in object)
-          hasOwnProperty.call(object, key) && keys.push(key);
+          has(object, key) && keys.push(key);
         ;
         return keys;
       },
@@ -33,7 +33,7 @@ this.superable = function (Object) {
         return  object.__proto__ ||
                 object.constructor.prototype;
       },
-    hasOwnProperty = Object.hasOwnProperty,
+    has = bind.call(bind.call, Object.hasOwnProperty),
     descriptor = {
       get: function get() {
         "no strict";  // I am not kidding
@@ -61,7 +61,7 @@ this.superable = function (Object) {
     }
   ;
   return function superable(object) {
-    return hasOwnProperty.call(object, SUPER) ?
+    return has(object, SUPER) ?
       object : defineProperty(object, SUPER, descriptor)
     ;
   };

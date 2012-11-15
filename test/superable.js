@@ -27,7 +27,11 @@ wru.test([
         me.name === "Andrea" &&
         me.age === 34
       );
-      wru.assert(B.name === "B");
+
+      if ((function a(){}).name) {
+        wru.assert(B.name === "B");
+      }
+
     }
   },
   {
