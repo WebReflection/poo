@@ -59,11 +59,9 @@ this.Class = function () {
                 if (key !== "shared") {
                   // assuming ES5 descriptor
                   rd = {};
-                  for (key in tmp) {
-                    if (tmp.hasOwnProperty(key)) {
-                      rd[key] = tmp[key];
-                    }
-                  }
+                  for (key in tmp)
+                    has(tmp, key) && rd[key] = tmp[key]
+                  ;
                   proto[key] = rd;
                   break;
                 }

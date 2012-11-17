@@ -33,7 +33,10 @@ this.superable = function (Object) {
         return  object.__proto__ ||
                 object.constructor.prototype;
       },
-    has = bind.call(bind.call, Object.hasOwnProperty),
+    hasOwnProperty = Object.hasOwnProperty,
+    has = function has(object, key) {
+      return hasOwnProperty.call(object, key);
+    },
     descriptor = {
       get: function get() {
         "no strict";  // I am not kidding

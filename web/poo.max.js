@@ -12,9 +12,9 @@ this.poo = function(Object){
     defineProperties =
       Object.defineProperties ||
       function (object, descriptor) {
-        for (var key in descriptor) {
-          has(descriptor, key) && defineProperty(object, key, descriptor[key]);
-        }
+        for (var key in descriptor)
+          has(descriptor, key) && defineProperty(object, key, descriptor[key])
+        ;
         return object;
       },
     bind =
@@ -65,7 +65,7 @@ this.poo = function(Object){
       function getKeys(object) {
         var keys = [], key;
         for (key in object)
-          has(object, key) && keys.push(key);
+          has(object, key) && keys.push(key)
         ;
         return keys;
       },
@@ -75,7 +75,10 @@ this.poo = function(Object){
         return  object.__proto__ ||
                 object[CONSTRUCTOR][PROTOTYPE];
       },
-    has = bind.call(bind.call, Object[PROTOTYPE].hasOwnProperty),
+    hasOwnProperty = Object[PROTOTYPE].hasOwnProperty,
+    has = function has(object, key) {
+      return hasOwnProperty.call(object, key);
+    },
     inherit =
       Object.create ||
       function inherit(object) {
@@ -123,9 +126,9 @@ this.poo = function(Object){
               case "object":
                 if (key !== "shared") {
                   rd = {};
-                  for (key in tmp) {
-                    has(tmp, key) && (rd[key] = tmp[key]);
-                  }
+                  for (key in tmp)
+                    has(tmp, key) && (rd[key] = tmp[key])
+                  ;
                   proto[key] = rd;
                   break;
                 }
