@@ -12,19 +12,19 @@ The main reason for this is to *avoid coupling tools-chain and build-steps* and 
 ES6 VS poo.js
 -------------
 
-    // ES6 syntax Tomorrow                    // poo.js syntax Today!
-    class B extends A {                       var B = cC({ extend: A,
-      constructor(some, value) {                constructor: function (some, value) {
-        super(some);                              this.super(some);
-        this.value = value;                       this.value = value;
-      },                                        },
-      concat() {                                concat: function () {
-        return super() + this.value;              return this.super() + this.value;
-      }                                         }
-    }                                         });
+    // ES6 syntax Tomorrow              // poo.js syntax Today!
+    class B extends A {                 var B = cC({ extend: A,
+      constructor(some, value) {          constructor: function(some, value) {
+        super(some);                        this.super(some);
+        this.value = value;                 this.value = value;
+      },                                  },
+      concat() {                          concat: function() {
+        return super() + this.value;        return this.super() + this.value;
+      }                                   }
+    }                                   });
 
-                      // NOTE: var cC = poo.SuperClass;
-                      // as create Class
+                // NOTE: var cC = poo.SuperClass;
+                // as create Class
 
 
 Not The Usual Wrapper!
@@ -82,7 +82,13 @@ Both context and caller are necessary to make the superable magic work as expect
 
     poo.superable(B.prototype);
 
-    new B; // will alert Hello!
+    new B;
+    // will alert Hello! dong these steps:
+    //  1. invokes B.prototype.constructor which
+    //  2. invokes A.prototype.constructor which
+    //  3. invokes B.prototype.test which
+    //  4. invokes A.prototype.test
+
 
 
 Not Only Superable
@@ -113,7 +119,7 @@ If you are worried about the fact `"use strict";` is not allowed, I tell you the
 Alternative Parsing Code
 ------------------------
 The advantage of `poo.js` superable is that if there is a tool able to parse JavaScript, it's actually not that difficult to address these `super()` calls via static analysis and put instead the formal prototype method call.
-This is waht *TypeScript* is doing already and I am really thinking to hook in TypeScript in order to make the transformation easy for production code where extreme performance might matter over these `caller`s trap.
+This is what *TypeScript* is doing already and I am really thinking to hook in TypeScript in order to make the transformation easy for production code where extreme performance might matter over these `caller`s traps.
 
 Stay tuned, this might be easier than I think :-)
 
