@@ -110,6 +110,11 @@ Inheritance is tested more than 2 levels together with `this.super()` calls and 
 If you are worried about the fact `"use strict";` is not allowed, I tell you there's no way to obtain this same magic behavior otherwise unless through wrappers, a no-go, or writing explicitly the `SuperConstructpr.prototype.currentMethod.call(this, arg1, argN)` instead: the fastest way, the most boring one too.
 
 
+Alternative Parsing Code
+------------------------
+The advantage of `poo.js` superable is that if there is a tool able to parse JavaScript, it's actually not that difficult to address these `super()` calls via static analysis and put instead the formal prototype method call.
+This is waht *TypeScript* is doing already and I am really thinking to hook in TypeScript in order to make the transformation easy for production code where extreme performance might matter over these `caller`s trap.
 
+Stay tuned, this might be easier than I think :-)
 
 
