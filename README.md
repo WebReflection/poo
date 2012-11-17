@@ -30,11 +30,11 @@ ES6 VS poo.js
 Not The Usual Wrapper!
 ----------------------
 If you are wondering what's new in `poo.js` here the summary: the most unobtrusive way to add super calls to any object.
-`poo.superable(object)` is able to add *a simple getter rather than wrap all functions* and this is the key to do not make all methods invocations slow.
-Common framework do a lot of magic and have a lot of undesired side effects because of their super implementation where mixins will break as well as methods with some problem and nested calls.
+`poo.superable(object)` is able to add **a simple getter rather than wrap all functions** and this is the key to do not make all methods invocations slow.
+Common frameworks do a lot of magic and could have a lot of undesired side effects because of their super implementation where mixins will break as well as methods with some problem and nested calls.
 
 [I have personally discussed this topic many times](http://webreflection.blogspot.com/2010/01/javascript-super-bullshit.html) but developers seem to be easily amused by the new shiny syntax proposed in ES6 as sugar.
-For the very first time and as far as I know, there is a way to do not pay for all that magic except when the magic is actually needed (which is not true for 80% of the time isn't it ...)
+For the very first time and as far as I know, there is a way to do not pay for all that magic except when the magic is actually needed (admit it, you don't really use `super()` that often while extending)
 
 
 A Future Proof Approach
